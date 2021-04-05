@@ -1,7 +1,8 @@
-package br.com.zup.proposta.criaproposta;
+package br.com.zup.proposta.proposta;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -10,13 +11,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.zup.proposta.integracao.AnaliseClient;
-import br.com.zup.proposta.integracao.AnaliseReponse;
-import br.com.zup.proposta.integracao.AnaliseRequest;
+import br.com.zup.proposta.cartao.Cartao;
+import br.com.zup.proposta.integracaoanalise.AnaliseClient;
+import br.com.zup.proposta.integracaoanalise.AnaliseReponse;
+import br.com.zup.proposta.integracaoanalise.AnaliseRequest;
 import feign.FeignException;
 
 @Entity
@@ -46,7 +49,8 @@ public class Proposta {
 	@Column(name = "status_proposta", nullable = false)
 	private StatusProposta status = StatusProposta.NAO_ELEGIVEL;
 	
-	private String numeroCartao;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	private Cartao cartao;
 
 	@Deprecated
 	public Proposta() {
@@ -77,7 +81,7 @@ public class Proposta {
 	public StatusProposta getStatus() {
 		return status;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Proposta { documento=" + documento + ", email=" + email + ", nome=" + nome + ", endereco=" + endereco
@@ -97,11 +101,15 @@ public class Proposta {
 		}
 	}
 
-	public void associarCartao() {
-		
-		
-		
-		
-		
+	public boolean propostaLegivel() {
+		if(status.equals(StatusProposta.NAO_ELEGIVEL)) {
+			return false;
+		}
+		return true;
 	}
+	
+	public void adicionaCartao(Cartao cartao) {
+		this.cartao = cartao;
+	}
+
 }

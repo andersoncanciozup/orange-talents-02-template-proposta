@@ -1,4 +1,4 @@
-package br.com.zup.proposta.criaproposta;
+package br.com.zup.proposta.proposta;
 
 import java.math.BigDecimal;
 
@@ -7,6 +7,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 import com.sun.istack.NotNull;
+
+import br.com.zup.proposta.compartilhado.CPFouCNPJ;
 
 public class NovaPropostaRequest {
 	
@@ -20,6 +22,15 @@ public class NovaPropostaRequest {
 	private BigDecimal salario;
 	@NotNull
 	private EnderecoRequest endereco;
+
+	public NovaPropostaRequest(@NotBlank String documento, @NotBlank @Email String email, @NotBlank String nome,
+			@Positive BigDecimal salario, EnderecoRequest endereco) {
+		this.documento = documento;
+		this.email = email;
+		this.nome = nome;
+		this.salario = salario;
+		this.endereco = endereco;
+	}
 
 	public String getDocumento() {
 		return documento;

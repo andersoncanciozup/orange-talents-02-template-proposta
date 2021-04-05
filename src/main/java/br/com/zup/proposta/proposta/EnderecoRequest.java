@@ -1,4 +1,4 @@
-package br.com.zup.proposta.criaproposta;
+package br.com.zup.proposta.proposta;
 
 import javax.validation.constraints.NotBlank;
 
@@ -12,6 +12,14 @@ public class EnderecoRequest {
 	private String bairro;
 	@NotBlank
 	private String cep;
+
+	public EnderecoRequest(@NotBlank String logradouro, @NotBlank String numero, @NotBlank String bairro,
+			@NotBlank String cep) {
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.cep = cep;
+	}
 
 	public String getLogradouro() {
 		return logradouro;

@@ -1,4 +1,4 @@
-package br.com.zup.proposta.criaproposta;
+package br.com.zup.proposta.proposta;
 
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;

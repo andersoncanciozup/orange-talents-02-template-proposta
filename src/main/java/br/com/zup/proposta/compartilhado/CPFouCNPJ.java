@@ -1,4 +1,4 @@
-package br.com.zup.proposta.criaproposta;
+package br.com.zup.proposta.compartilhado;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
