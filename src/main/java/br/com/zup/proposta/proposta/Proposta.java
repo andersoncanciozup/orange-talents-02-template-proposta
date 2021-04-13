@@ -82,6 +82,10 @@ public class Proposta {
 		return status;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
 	@Override
 	public String toString() {
 		return "Proposta { documento=" + documento + ", email=" + email + ", nome=" + nome + ", endereco=" + endereco
